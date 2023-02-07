@@ -4,7 +4,7 @@ This file is part of the metaradar.io project. The project is, so far, a hobby a
 Metaradar.io is a project that enables the tracking of blockchain addresses.
 
 ## How to run this file
-This file runs standonline in AWS Lambda. It uses mysql2 which has been incorporated through a Lambda Layer.
+This file runs standalone in AWS Lambda. It uses mysql2 which has been incorporated through a Lambda Layer.
 
 ## Do you have questions?
 Open an issue or email info@metaradar.io. 
