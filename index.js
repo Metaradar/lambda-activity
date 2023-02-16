@@ -43,7 +43,7 @@ exports.handler = async function (event, context) {
     let json = JSON.stringify(aevent.activity);
     if (res[0].length > 0) {
         for (let activity of aevent.activity) {
-            let sql = "INSERT INTO notifications (addressId, address, email, content, title, json, status, views, clicks, notificationDate, network) VALUES(?, ?, ?, ?, ?, ?, 1,0,0, NOW(), network)";
+            let sql = "INSERT INTO notifications (addressId, address, email, content, title, json, status, views, clicks, notificationDate, network) VALUES(?, ?, ?, ?, ?, ?, 1, 0, 0, NOW(), ?)";
             let adr = res[0][0];
 
 
@@ -52,7 +52,6 @@ exports.handler = async function (event, context) {
             let title = "New Activity";
             let content = "Data: " + json;
 
-            console.log("activity: ", activity);
             let transactionLink = "https://etherscan.io/tx/" + activity.hash;
             if (aevent.network == "MATIC_MAINNET") {
                 transactionLink = "https://polygonscan.com/tx/" + activity.hash;
@@ -213,7 +212,7 @@ exports.handler = async function (event, context) {
                 let ret = await ses.sendEmail(params).promise();
 
 
-                await con.execute(sql, [adr.id, adr.address, adr.email, content, title, json]);
+                await con.execute(sql, [adr.id, adr.address, adr.email, content, title, json, network]);
             }
             if (sendError) {
 
